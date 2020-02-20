@@ -1,0 +1,22 @@
+sourceSets {
+  guiceConfig
+}
+
+configurations {
+  guiceConfigCompile.extendsFrom compile
+}
+
+dependencies {
+  // This seems to be a problem with the vaadin-gradle-plugin, but we need this
+  // to have access to classes of the main sourceSet in the guice sourceSet.
+  guiceConfigCompile sourceSets.main.output
+}
+
+compileGuiceConfigJava {
+  options.compilerArgs << "-Xlint:all"
+  options.compilerArgs << "-Xlint:-serial"
+}
+
+jar {
+  from sourceSets.guiceConfig.output
+}

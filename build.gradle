@@ -4,6 +4,8 @@ plugins {
     id 'com.vaadin' version '0.5.0'
 }
 
+apply from: "${rootDir}/gradle/guice-project.gradle"
+
 defaultTasks("clean", "vaadinBuildFrontend", "build")
 
 repositories {
